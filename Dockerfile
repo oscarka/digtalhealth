@@ -1,3 +1,12 @@
+# 使用Node.js镜像构建前端
+FROM node:18-alpine AS frontend-builder
+
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm install
+COPY frontend/ ./
+RUN npm run build
+
 # 使用Python 3.9官方镜像
 FROM python:3.9-slim
 
@@ -20,6 +29,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # 复制应用代码
 COPY . .
+
+# 复制前端构建文件
+COPY --from=frontend-builder /app/frontend/build ./frontend/build
 
 # 创建上传目录
 RUN mkdir -p uploads
