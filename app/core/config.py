@@ -17,6 +17,14 @@ class Settings(BaseSettings):
     # Railway端口配置
     PORT: int = int(os.getenv("PORT", "8000"))
     
+    @property
+    def port(self) -> int:
+        """获取端口号，支持Railway环境变量"""
+        try:
+            return int(os.getenv("PORT", "8000"))
+        except (ValueError, TypeError):
+            return 8000
+    
     # 数据库配置
     DATABASE_URL: str = "sqlite:///./health_system.db"
     # DATABASE_URL: str = "postgresql://user:password@localhost/health_system"
