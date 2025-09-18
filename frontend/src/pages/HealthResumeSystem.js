@@ -102,7 +102,7 @@ const HealthResumeSystem = () => {
   const [recognitionAccuracy, setRecognitionAccuracy] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState('overview');
   const [isAddingEvent, setIsAddingEvent] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState('stage3');
+  const [selectedMenu, setSelectedMenu] = useState('stage1');
   const [selectedPlanForDetail, setSelectedPlanForDetail] = useState(null);
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(1); // 默认选中方案二（索引1）
   const [showPlanDetail, setShowPlanDetail] = useState(false); // 控制是否显示方案详情页面
