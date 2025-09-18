@@ -24,6 +24,12 @@ COPY . .
 # 创建上传目录
 RUN mkdir -p uploads
 
+# 复制启动脚本
+COPY start.sh /app/start.sh
+
+# 设置启动脚本权限
+RUN chmod +x /app/start.sh
+
 # 暴露端口
 EXPOSE 8000
 
@@ -32,4 +38,4 @@ ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
 # 启动命令
-CMD ["sh", "-c", "python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["/app/start.sh"]
